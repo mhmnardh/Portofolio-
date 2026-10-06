@@ -1,17 +1,6 @@
-![Uploading project1.png…]()
-![thumbnail](https://user-images.githubusercontent.com/16558205/180779213-ea740975-3df1-460a-a964-0a623ee25872.png)
+<img width="878" height="878" alt="Screenshot (137)" src="https://github.com/user-attachments/assets/ff854a3a-54df-4c92-860b-ba39001a7ebd" />
 
-### Credit:https://github.com/chetanverma16/react-portfolio-template
-
-###
-
-###
-
-### Tutorials
-
-Youtube - https://www.youtube.com/watch?v=8cmJ2kR4SpM
-
-Blog - https://www.chetanverma.com/blog/how-to-build-a-portfolio-website-using-nextjs-and-tailwindcss
+### Link Portofolio:https://portofolio-muhaimin1.vercel.app/
 
 ### Features -
 
@@ -25,49 +14,10 @@ Blog - https://www.chetanverma.com/blog/how-to-build-a-portfolio-website-using-n
 ### Sections
 
 - Header
-- Work
+- Project
 - Services
 - About
 - Contact
-- Markdown Blog
 
-### How To Use
-
-- Clone this repo
-- run `yarn`
-- `yarn dev`
-
-### How To Deploy -
-
-- There are many ways to Deploy this repo.
-- here we are gonna use netlify
-- Login into netlify with github
-- after login select the forked repo or the repo you want to deploy
-- after selecting netlify will automatially deploy your website.
-
-Quickes way to deploy this repo -
-
-[![Deploy To Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chetanverma16/react-portfolio-template)
-
-### How To Contribute -
-
-I would be very happy to review your PRs and all the awesome things that you can improve on this portfolio.
-
-### Tech Stack Used -
-
-- Next.js
-- TailwindCSS
-
-### Thanks
-
-If you liked this portfolio template, don't forget to give it a ⭐.
-
-## Awesome Contributors
-
-[@Aryan3212](https://github.com/Aryan3212) [@achu-krishna](https://github.com/achu-krishna)
-
-## Supporting
-
-Many hours of hard work have gone into this project. Your support will be very appreciated!
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/chetanverma)
+### Terimakasih banyak kepada:https://github.com/chetanverma16
+### Credit:https://github.com/chetanverma16/react-portfolio-template
