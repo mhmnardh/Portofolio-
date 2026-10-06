@@ -1,1 +1,37 @@
-{"name":"Muhaimin","headerTaglineOne":"Hai😁","headerTaglineTwo":"Nama saya Muhaimin ","headerTaglineThree":"Saya seorang UI/UX designer and developer website","headerTaglineFour":"Saya tinggal di Garut, Jawa Barat","showCursor":false,"showBlog":false,"darkMode":true,"showResume":true,"socials":[{"id":"1","title":"Github","link":"https://github.com/mhmnardh"},{"id":"2","title":"Instagram","link":"https://www.instagram.com/mhmnardh/"},{"id":"3","title":"Linkedin","link":"https://www.linkedin.com/in/mhmnardh/"},{"id":"4","title":"Project","link":"https://portofolio-beige-omega.vercel.app/"},{"id":"5","title":"Email","link":"mailto:hasanmuqaffi@gmail.com"}],"projects":[{"id":"1","title":"Project Pertama saya","description":"Web Portofolio","imageSrc":"/images/Project1.png","url":"https://portofolio-beige-omega.vercel.app/"}],"services":[{"id":"2","title":"Branding","description":"We design key brand elements such as the logo, color scheme, typography, and other design components that makes your brand stand out from competitors."},{"id":"3","title":"Website Development","description":"We build and optimize your online presence.  Website is the digital entry point into your business and a powerful revenue channel."},{"id":"4","title":"UI/UIX Designer","description":"We combine creative design and technical skills to build striking UI/UX visualisations that bring your project to life."}],"aboutpara":"Saya adalah pelajar di SMKN 1 Garut jurusan Rekayasa Perangkat Lunak (RPL). Saya Lahir di Bandung, dan sekarang sedah menempuh pendidikan di SMKN 1 Garut.","resume":{"tagline":"👋  I'm a software engineer, product designer.","description":"Saya adalah pelajar di SMKN 1 Garut jurusan Rekayasa Perangkat Lunak (RPL).","experiences":[{"id":"1","dates":"March 2025 - Present","type":"Full Time","position":"Frontend Engineer at SMKN 1 GARUT","bullets":"Saya pelajar"},{"id":"d495c23b-4f65-479a-9b8a-cfbc1c089725","dates":"","type":"","position":"","bullets":""}],"education":{"universityName":"SMKN 1 Garut","universityDate":"2025-present","universityPara":"I'm a student at SMKn 1 Garut right now "},"languages":["Javascript","HTML5","CSS","Python","PHP"],"frameworks":["React","Typescript","NodeJs","Laravel"],"others":["Figma","AdobeXD","AWS"]}}
+{
+  "name": "Muhaimin",
+  "headerTaglineOne": "Hai😁",
+  "headerTaglineTwo": "Nama saya Muhaimin ",
+  "headerTaglineThree": "Saya seorang UI/UX designer and website developer",
+  "headerTaglineFour": "Saya tinggal di Garut, Jawa Barat",
+  "showCursor": false,
+  "showBlog": false,
+  "darkMode": true,
+  "showResume": true,
+  "socials": [
+    { "id": "1", "title": "Github", "link": "https://github.com/mhmnardh" },
+    { "id": "2", "title": "Instagram", "link": "https://www.instagram.com/mhmnardh/" },
+    { "id": "3", "title": "Linkedin", "link": "https://www.linkedin.com/in/mhmnardh/" },
+    { "id": "4", "title": "Project", "link": "https://portofolio-beige-omega.vercel.app/" },
+    { "id": "5", "title": "Email", "link": "mailto:hasanmuqaffi@gmail.com" }
+  ],
+  "projects": [{ "id": "1", "title": "Project Pertama saya", "description": "Web Portofolio", "imageSrc": "/images/project1.png", "url": "https://portofolio-beige-omega.vercel.app/" }],
+  "services": [
+    { "id": "2", "title": "Branding", "description": "We design key brand elements such as the logo, color scheme, typography, and other design components that makes your brand stand out from competitors." },
+    { "id": "3", "title": "Website Development", "description": "We build and optimize your online presence.  Website is the digital entry point into your business and a powerful revenue channel." },
+    { "id": "4", "title": "UI/UIX Designer", "description": "We combine creative design and technical skills to build striking UI/UX visualisations that bring your project to life." }
+  ],
+  "aboutpara": "Saya adalah pelajar di SMKN 1 Garut jurusan Rekayasa Perangkat Lunak (RPL). Saya Lahir di Bandung, dan sekarang sedang menempuh pendidikan di SMKN 1 Garut.",
+  "resume": {
+    "tagline": "👋  I'm a software engineer, product designer.",
+    "description": "Saya adalah pelajar di SMKN 1 Garut jurusan Rekayasa Perangkat Lunak (RPL).",
+    "experiences": [
+      { "id": "1", "dates": "March 2025 - Present", "type": "Full Time", "position": "Frontend Engineer at SMKN 1 GARUT", "bullets": "Saya pelajar" },
+      { "id": "d495c23b-4f65-479a-9b8a-cfbc1c089725", "dates": "", "type": "", "position": "", "bullets": "" }
+    ],
+    "education": { "universityName": "SMKN 1 Garut", "universityDate": "2025-present", "universityPara": "I'm a student at SMKn 1 Garut right now " },
+    "languages": ["Javascript", "HTML5", "CSS", "Python", "PHP"],
+    "frameworks": ["React", "Typescript", "NodeJs", "Laravel"],
+    "others": ["Figma", "AdobeXD", "AWS"]
+  }
+}
