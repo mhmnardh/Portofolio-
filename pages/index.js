@@ -8,14 +8,15 @@ import { stagger } from "../animations";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Button from "../components/Button";
-import Link from "next/link";
 import Cursor from "../components/Cursor";
 
 // Local Data
 import data from "../data/portfolio.json";
 
 export default function Home() {
+  const router = useRouter();
   // Ref
   const workRef = useRef();
   const aboutRef = useRef();
@@ -101,9 +102,9 @@ export default function Home() {
         {/* This button should not go into production */}
         {process.env.NODE_ENV === "development" && (
           <div className="fixed bottom-5 right-5">
-            <Link href="/edit">
-              <Button type="primary">Edit Data</Button>
-            </Link>
+            <Button type="primary" onClick={() => router.push("/edit")}>
+              Edit Data
+            </Button>
           </div>
         )}
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
