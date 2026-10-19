@@ -14,15 +14,26 @@ const Edit = () => {
   const [currentTabs, setCurrentTabs] = useState("HEADER");
   const { theme } = useTheme();
 
-  const saveData = () => {
+  const saveData = async () => {
     if (process.env.NODE_ENV === "development") {
-      fetch("/api/portfolio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      try {
+        const response = await fetch("/api/portfolio", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw new Error("Portfolio data could not be saved");
+        }
+
+        alert("Portfolio data saved.");
+      } catch (error) {
+        console.error("Failed to save portfolio data:", error);
+        alert("Unable to save portfolio data.");
+      }
     } else {
       alert("This thing only works in development mode.");
     }
@@ -30,9 +41,8 @@ const Edit = () => {
 
   // Project Handler
   const editProjects = (projectIndex, editProject) => {
-    let copyProjects = data.projects;
-    copyProjects[projectIndex] = { ...editProject };
-    setData({ ...data, projects: copyProjects });
+    const projects = data.projects.map((project, index) => (index === projectIndex ? { ...editProject } : project));
+    setData({ ...data, projects });
   };
 
   const addProject = () => {
@@ -44,8 +54,7 @@ const Edit = () => {
           id: uuidv4(),
           title: "New Project",
           description: "Web Design & Development",
-          imageSrc:
-            "https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTAyfHxwYXN0ZWx8ZW58MHx8MHw%3D&auto=format&fit=crop&w=400&q=60",
+          imageSrc: "https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTAyfHxwYXN0ZWx8ZW58MHx8MHw%3D&auto=format&fit=crop&w=400&q=60",
 
           url: "http://chetanverma.com/",
         },
@@ -54,17 +63,15 @@ const Edit = () => {
   };
 
   const deleteProject = (id) => {
-    const copyProjects = data.projects;
-    copyProjects = copyProjects.filter((project) => project.id !== id);
-    setData({ ...data, projects: copyProjects });
+    const projects = data.projects.filter((project) => project.id !== id);
+    setData({ ...data, projects });
   };
 
   // Services Handler
 
   const editServices = (serviceIndex, editService) => {
-    let copyServices = data.services;
-    copyServices[serviceIndex] = { ...editService };
-    setData({ ...data, services: copyServices });
+    const services = data.services.map((service, index) => (index === serviceIndex ? { ...editService } : service));
+    setData({ ...data, services });
   };
 
   const addService = () => {
@@ -75,25 +82,22 @@ const Edit = () => {
         {
           id: uuidv4(),
           title: "New Service",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+          description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
         },
       ],
     });
   };
 
   const deleteService = (id) => {
-    const copyServices = data.services;
-    copyServices = copyServices.filter((service) => service.id !== id);
-    setData({ ...data, services: copyServices });
+    const services = data.services.filter((service) => service.id !== id);
+    setData({ ...data, services });
   };
 
   // Socials Handler
 
   const editSocials = (socialIndex, editSocial) => {
-    let copySocials = data.socials;
-    copySocials[socialIndex] = { ...editSocial };
-    setData({ ...data, socials: copySocials });
+    const socials = data.socials.map((social, index) => (index === socialIndex ? { ...editSocial } : social));
+    setData({ ...data, socials });
   };
 
   const addSocials = () => {
@@ -111,9 +115,8 @@ const Edit = () => {
   };
 
   const deleteSocials = (id) => {
-    const copySocials = data.socials;
-    copySocials = copySocials.filter((social) => social.id !== id);
-    setData({ ...data, socials: copySocials });
+    const socials = data.socials.filter((social) => social.id !== id);
+    setData({ ...data, socials });
   };
 
   // Resume
@@ -138,11 +141,10 @@ const Edit = () => {
   };
 
   const handleEditExperiences = (index, editExperience) => {
-    let copyExperiences = data.resume.experiences;
-    copyExperiences[index] = { ...editExperience };
+    const experiences = data.resume.experiences.map((experience, itemIndex) => (itemIndex === index ? { ...editExperience } : experience));
     setData({
       ...data,
-      resume: { ...data.resume, experiences: copyExperiences },
+      resume: { ...data.resume, experiences },
     });
   };
 
@@ -162,40 +164,22 @@ const Edit = () => {
           </div>
 
           <div className="flex items-center">
-            <Button
-              onClick={() => setCurrentTabs("HEADER")}
-              type={currentTabs === "HEADER" && "primary"}
-            >
+            <Button onClick={() => setCurrentTabs("HEADER")} type={currentTabs === "HEADER" && "primary"}>
               Header
             </Button>
-            <Button
-              onClick={() => setCurrentTabs("PROJECTS")}
-              type={currentTabs === "PROJECTS" && "primary"}
-            >
+            <Button onClick={() => setCurrentTabs("PROJECTS")} type={currentTabs === "PROJECTS" && "primary"}>
               Projects
             </Button>
-            <Button
-              onClick={() => setCurrentTabs("SERVICES")}
-              type={currentTabs === "SERVICES" && "primary"}
-            >
+            <Button onClick={() => setCurrentTabs("SERVICES")} type={currentTabs === "SERVICES" && "primary"}>
               Services
             </Button>
-            <Button
-              onClick={() => setCurrentTabs("ABOUT")}
-              type={currentTabs === "ABOUT" && "primary"}
-            >
+            <Button onClick={() => setCurrentTabs("ABOUT")} type={currentTabs === "ABOUT" && "primary"}>
               About
             </Button>
-            <Button
-              onClick={() => setCurrentTabs("SOCIAL")}
-              type={currentTabs === "SOCIAL" && "primary"}
-            >
+            <Button onClick={() => setCurrentTabs("SOCIAL")} type={currentTabs === "SOCIAL" && "primary"}>
               Social
             </Button>
-            <Button
-              onClick={() => setCurrentTabs("RESUME")}
-              type={currentTabs === "RESUME" && "primary"}
-            >
+            <Button onClick={() => setCurrentTabs("RESUME")} type={currentTabs === "RESUME" && "primary"}>
               Resume
             </Button>
           </div>
@@ -205,80 +189,31 @@ const Edit = () => {
           <div className="mt-10">
             <div className="flex items-center">
               <label className="w-1/5 text-lg opacity-50">Name</label>
-              <input
-                value={data.name}
-                onChange={(e) => setData({ ...data, name: e.target.value })}
-                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
-                type="text"
-              ></input>
+              <input value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2" type="text"></input>
             </div>
             <div className="mt-5 flex items-center">
-              <label className="w-1/5 text-sx opacity-50">
-                Header Tagline One
-              </label>
-              <input
-                value={data.headerTaglineOne}
-                onChange={(e) =>
-                  setData({ ...data, headerTaglineOne: e.target.value })
-                }
-                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
-                type="text"
-              ></input>
+              <label className="w-1/5 text-sx opacity-50">Header Tagline One</label>
+              <input value={data.headerTaglineOne} onChange={(e) => setData({ ...data, headerTaglineOne: e.target.value })} className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2" type="text"></input>
             </div>
             <div className="mt-5 flex items-center">
-              <label className="w-1/5 text-lg opacity-50">
-                Header Tagline Two
-              </label>
-              <input
-                value={data.headerTaglineTwo}
-                onChange={(e) =>
-                  setData({ ...data, headerTaglineTwo: e.target.value })
-                }
-                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
-                type="text"
-              ></input>
+              <label className="w-1/5 text-lg opacity-50">Header Tagline Two</label>
+              <input value={data.headerTaglineTwo} onChange={(e) => setData({ ...data, headerTaglineTwo: e.target.value })} className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2" type="text"></input>
             </div>
             <div className="mt-5 flex items-center">
-              <label className="w-1/5 text-lg opacity-50">
-                Header Tagline Three
-              </label>
-              <input
-                value={data.headerTaglineThree}
-                onChange={(e) =>
-                  setData({ ...data, headerTaglineThree: e.target.value })
-                }
-                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
-                type="text"
-              ></input>
+              <label className="w-1/5 text-lg opacity-50">Header Tagline Three</label>
+              <input value={data.headerTaglineThree} onChange={(e) => setData({ ...data, headerTaglineThree: e.target.value })} className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2" type="text"></input>
             </div>
             <div className="mt-5 flex items-center">
-              <label className="w-1/5 text-lg opacity-50">
-                Header Tagline Four
-              </label>
-              <input
-                value={data.headerTaglineFour}
-                onChange={(e) =>
-                  setData({ ...data, headerTaglineFour: e.target.value })
-                }
-                className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2"
-                type="text"
-              ></input>
+              <label className="w-1/5 text-lg opacity-50">Header Tagline Four</label>
+              <input value={data.headerTaglineFour} onChange={(e) => setData({ ...data, headerTaglineFour: e.target.value })} className="w-4/5 ml-10 p-2 rounded-md shadow-lg border-2" type="text"></input>
             </div>
             <div className="mt-5 flex items-center">
               <label className="w-1/5 text-lg opacity-50">Blog</label>
               <div className="w-4/5 ml-10 flex items-center">
-                <Button
-                  onClick={() => setData({ ...data, showBlog: true })}
-                  type={data.showBlog && "primary"}
-                >
+                <Button onClick={() => setData({ ...data, showBlog: true })} type={data.showBlog && "primary"}>
                   Yes
                 </Button>
-                <Button
-                  onClick={() => setData({ ...data, showBlog: false })}
-                  classes={
-                    !data.showBlog && "bg-red-500 text-white hover:bg-red-600"
-                  }
-                >
+                <Button onClick={() => setData({ ...data, showBlog: false })} classes={!data.showBlog && "bg-red-500 text-white hover:bg-red-600"}>
                   No
                 </Button>
               </div>
@@ -286,18 +221,10 @@ const Edit = () => {
             <div className="mt-5 flex items-center">
               <label className="w-1/5 text-lg opacity-50">Dark Mode</label>
               <div className="w-4/5 ml-10 flex items-center">
-                <Button
-                  onClick={() => setData({ ...data, darkMode: true })}
-                  type={data.darkMode && "primary"}
-                >
+                <Button onClick={() => setData({ ...data, darkMode: true })} type={data.darkMode && "primary"}>
                   Yes
                 </Button>
-                <Button
-                  onClick={() => setData({ ...data, darkMode: false })}
-                  classes={
-                    !data.darkMode && "bg-red-500 text-white hover:bg-red-600"
-                  }
-                >
+                <Button onClick={() => setData({ ...data, darkMode: false })} classes={!data.darkMode && "bg-red-500 text-white hover:bg-red-600"}>
                   No
                 </Button>
               </div>
@@ -305,18 +232,10 @@ const Edit = () => {
             <div className="mt-5 flex items-center">
               <label className="w-1/5 text-lg opacity-50">Show Resume</label>
               <div className="w-4/5 ml-10 flex items-center">
-                <Button
-                  onClick={() => setData({ ...data, showResume: true })}
-                  type={data.showResume && "primary"}
-                >
+                <Button onClick={() => setData({ ...data, showResume: true })} type={data.showResume && "primary"}>
                   Yes
                 </Button>
-                <Button
-                  onClick={() => setData({ ...data, showResume: false })}
-                  classes={
-                    !data.showResume && "bg-red-500 text-white hover:bg-red-600"
-                  }
-                >
+                <Button onClick={() => setData({ ...data, showResume: false })} classes={!data.showResume && "bg-red-500 text-white hover:bg-red-600"}>
                   No
                 </Button>
               </div>
@@ -324,18 +243,10 @@ const Edit = () => {
             <div className="mt-5 flex items-center">
               <label className="w-1/5 text-lg opacity-50">Custom Cursor</label>
               <div className="w-4/5 ml-10 flex items-center">
-                <Button
-                  onClick={() => setData({ ...data, showCursor: true })}
-                  type={data.showCursor && "primary"}
-                >
+                <Button onClick={() => setData({ ...data, showCursor: true })} type={data.showCursor && "primary"}>
                   Yes
                 </Button>
-                <Button
-                  onClick={() => setData({ ...data, showCursor: false })}
-                  classes={
-                    !data.showCursor && "bg-red-500 text-white hover:bg-red-600"
-                  }
-                >
+                <Button onClick={() => setData({ ...data, showCursor: false })} classes={!data.showCursor && "bg-red-500 text-white hover:bg-red-600"}>
                   No
                 </Button>
               </div>
@@ -350,10 +261,7 @@ const Edit = () => {
                 <div className="mt-10" key={project.id}>
                   <div className="flex items-center justify-between">
                     <h1 className="text-2xl">{project.title}</h1>
-                    <Button
-                      onClick={() => deleteProject(project.id)}
-                      type="primary"
-                    >
+                    <Button onClick={() => deleteProject(project.id)} type="primary">
                       Delete
                     </Button>
                   </div>
@@ -373,9 +281,7 @@ const Edit = () => {
                     ></input>
                   </div>
                   <div className="flex items-center mt-2">
-                    <label className="w-1/5 text-lg opacity-50">
-                      Description
-                    </label>
+                    <label className="w-1/5 text-lg opacity-50">Description</label>
                     <input
                       value={project.description}
                       onChange={(e) =>
@@ -389,9 +295,7 @@ const Edit = () => {
                     ></input>
                   </div>
                   <div className="flex items-center mt-2">
-                    <label className="w-1/5 text-lg opacity-50">
-                      Image Source
-                    </label>
+                    <label className="w-1/5 text-lg opacity-50">Image Source</label>
                     <input
                       value={project.imageSrc}
                       onChange={(e) =>
@@ -438,10 +342,7 @@ const Edit = () => {
                 <div key={service.id}>
                   <div className="flex items-center justify-between">
                     <h1 className="text-2xl">{service.title}</h1>
-                    <Button
-                      onClick={() => deleteService(service.id)}
-                      type="primary"
-                    >
+                    <Button onClick={() => deleteService(service.id)} type="primary">
                       Delete
                     </Button>
                   </div>
@@ -460,9 +361,7 @@ const Edit = () => {
                     ></input>
                   </div>
                   <div className="flex items-center mt-5">
-                    <label className="w-1/5 text-lg opacity-50">
-                      Description
-                    </label>
+                    <label className="w-1/5 text-lg opacity-50">Description</label>
                     <textarea
                       value={service.description}
                       onChange={(e) =>
@@ -488,11 +387,7 @@ const Edit = () => {
         {currentTabs === "ABOUT" && (
           <div className="mt-10">
             <h1 className="text-2xl">About</h1>
-            <textarea
-              className="w-full h-96 mt-10 p-2 rounded-md shadow-md border"
-              value={data.aboutpara}
-              onChange={(e) => setData({ ...data, aboutpara: e.target.value })}
-            ></textarea>
+            <textarea className="w-full h-96 mt-10 p-2 rounded-md shadow-md border" value={data.aboutpara} onChange={(e) => setData({ ...data, aboutpara: e.target.value })}></textarea>
           </div>
         )}
         {currentTabs === "SOCIAL" && (
@@ -502,10 +397,7 @@ const Edit = () => {
                 <div key={social.id}>
                   <div className="flex items-center justify-between">
                     <h1 className="text-2xl">{social.title}</h1>
-                    <Button
-                      onClick={() => deleteSocials(social.id)}
-                      type="primary"
-                    >
+                    <Button onClick={() => deleteSocials(social.id)} type="primary">
                       Delete
                     </Button>
                   </div>
@@ -739,11 +631,7 @@ const Edit = () => {
                             ...data,
                             resume: {
                               ...data.resume,
-                              languages: [
-                                ...data.resume.languages.slice(0, index),
-                                e.target.value,
-                                ...data.resume.languages.slice(index + 1),
-                              ],
+                              languages: [...data.resume.languages.slice(0, index), e.target.value, ...data.resume.languages.slice(index + 1)],
                             },
                           });
                         }}
@@ -756,9 +644,7 @@ const Edit = () => {
                             ...data,
                             resume: {
                               ...data.resume,
-                              languages: data.resume.languages.filter(
-                                (value, i) => index !== i
-                              ),
+                              languages: data.resume.languages.filter((value, i) => index !== i),
                             },
                           })
                         }
@@ -797,11 +683,7 @@ const Edit = () => {
                             ...data,
                             resume: {
                               ...data.resume,
-                              frameworks: [
-                                ...data.resume.frameworks.slice(0, index),
-                                e.target.value,
-                                ...data.resume.frameworks.slice(index + 1),
-                              ],
+                              frameworks: [...data.resume.frameworks.slice(0, index), e.target.value, ...data.resume.frameworks.slice(index + 1)],
                             },
                           });
                         }}
@@ -814,9 +696,7 @@ const Edit = () => {
                             ...data,
                             resume: {
                               ...data.resume,
-                              frameworks: data.resume.frameworks.filter(
-                                (value, i) => index !== i
-                              ),
+                              frameworks: data.resume.frameworks.filter((value, i) => index !== i),
                             },
                           })
                         }
@@ -855,11 +735,7 @@ const Edit = () => {
                             ...data,
                             resume: {
                               ...data.resume,
-                              others: [
-                                ...data.resume.others.slice(0, index),
-                                e.target.value,
-                                ...data.resume.others.slice(index + 1),
-                              ],
+                              others: [...data.resume.others.slice(0, index), e.target.value, ...data.resume.others.slice(index + 1)],
                             },
                           });
                         }}
@@ -872,9 +748,7 @@ const Edit = () => {
                             ...data,
                             resume: {
                               ...data.resume,
-                              others: data.resume.others.filter(
-                                (value, i) => index !== i
-                              ),
+                              others: data.resume.others.filter((value, i) => index !== i),
                             },
                           })
                         }
