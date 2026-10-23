@@ -31,7 +31,7 @@ body {
   width: 100vw;
   opacity: 0.5;
   filter: blur(40px);
-  background: radial-gradient(circle, rgba(248, 107, 223, 1) 0%, rgba(107, 107, 248, 0.8) 100%);
+  background: #800020;
 }
 .gradient-circle-bottom {
   position: absolute;
@@ -42,7 +42,7 @@ body {
   width: 100vw;
   opacity: 0.5;
   filter: blur(40px);
-  background: radial-gradient(circle, rgba(248, 107, 223, 1) 0%, rgba(107, 107, 248, 0.8) 100%);
+  background: #800020;
 }
 
 .gradient-shadow:hover::before {

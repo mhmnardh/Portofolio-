@@ -2,6 +2,8 @@
 
 ### Link Portofolio:https://portofolio-muhaimin1.vercel.app/
 
+
+
 ### Features -
 
 - Modern Stack (Next.js + TailwindCSS)
@@ -13,7 +15,8 @@
 
 ### Sections
 
-- Header
+- Header #800020
+         #391b3b  
 - Project
 - Services
 - About
